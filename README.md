@@ -1,5 +1,5 @@
 === Contact Form 7 Finder ===
-Contributors: your-github-username
+Contributors: DevAtmos
 Tags: contact form 7, shortcode scanner, form finder, admin tools
 Requires at least: 5.6
 Tested up to: 6.5
