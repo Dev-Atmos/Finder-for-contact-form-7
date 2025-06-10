@@ -39,8 +39,8 @@
 
 <div class="wrap">
 
-    <h1>Contact Form 7 Form Finder</h1>
-    <p>This plugin lists all published pages and posts using Contact Form 7 and shows which builder (Elementor/WPBakery) is used.</p>
+    <h1>Contact Form 7 Finder</h1>
+    <!-- <p>This plugin lists all published pages and posts using Contact Form 7 and shows which builder (Elementor/WPBakery) is used.</p> -->
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
         <input type="hidden" name="action" value="cf7_form_finder_export_csv">
         <?php wp_nonce_field('cf7_form_finder_export'); ?>
@@ -48,13 +48,13 @@
     </form>
     <br>
     <form id="cf7ff-builder-filter-form" method="post">
-        <label for="cf7ff-builder-filter">Filter by Builder:</label>
+        <!-- <label for="cf7ff-builder-filter">Filter by Builder:</label>
         <select id="cf7ff-builder-filter" name="builder">
             <option value="">All Builders</option>
             <option value="Elementor">Elementor</option>
             <option value="WPBakery">WPBakery</option>
             <option value="Classic/Other">Classic/Other</option>
-        </select>
+        </select> -->
         <label for="cf7ff-form-id-filter">Filter by Form ID:</label>
         <input type="number" id="cf7ff-form-id-filter" name="form_id" style="width: 100px;" />
 
@@ -69,8 +69,6 @@
         <thead>
             <tr>
                 <th><input type="checkbox" id="cf7ff-select-all"></th>
-
-
                 <th>Post Title</th>
                 <th>Post Type</th>
                 <th>Builder</th>
@@ -107,7 +105,7 @@
 
     </table>
     <button id="cf7ff-view-report" class="button">View Detailed Report</button>
-    <button id="cf7ff-download-report" class="button">Download CSV</button>
+    <!-- <button id="cf7ff-download-report" class="button">Download CSV</button> -->
 
 
     <div id="cf7ff-modal" style="

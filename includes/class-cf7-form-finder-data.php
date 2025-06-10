@@ -1,30 +1,53 @@
 <?php
+/**
+ * Class CF7_Form_Finder_Data
+ *
+ * Provides utility methods for finding and analyzing Contact Form 7 shortcodes usage in WordPress posts and pages.
+ *
+ * Methods:
+ * - fix_cf7_shortcode_ids(): Placeholder for future implementation to fix CF7 shortcode IDs.
+ * - get_form_usage(): Scans published posts and pages for Contact Form 7 shortcodes, detects page builder usage, and returns an array of form usage details.
+ * - detect_builder($post_id, $content): Detects which page builder (Elementor, WPBakery, or Classic/Other) is used in the given post.
+ * - extract_cf7_info($content): Extracts Contact Form 7 shortcode information (ID and title) from post content, supporting both numeric IDs and hash-based IDs.
+ * - get_cf7_hash_map(): Retrieves all published Contact Form 7 forms and builds a map of their hashes to IDs and titles using reflection.
+ */
+
 class CF7_Form_Finder_Data
 {
+    /**
+     * Placeholder for future implementation to fix CF7 shortcode IDs in post content.
+     *
+     * @return void
+     */
     public static function fix_cf7_shortcode_ids() {}
 
+    /**
+     * Scans all published posts and pages for Contact Form 7 shortcodes.
+     * Detects which page builder is used and returns an array of form usage details.
+     *
+     * @return array Array of form usage details, each containing post ID, title, type, builder, form ID, form title, and URL.
+     */
     public static function get_form_usage()
     {
-        global $wpdb;
-
         $results = [];
 
+        // Query published pages and posts containing [contact-form-7 in content
+        $args = [
+            'post_type'      => ['post', 'page'],
+            'post_status'    => 'publish',
+            's'              => '[contact-form-7',
+            'posts_per_page' => -1,
+            'fields'         => 'ids',  // We only need IDs here
+        ];
 
+        $post_ids = get_posts($args);
 
-        // Get all published pages and posts
-        $posts = $wpdb->get_results("
-            SELECT ID, post_title, post_type, post_content
-            FROM {$wpdb->prefix}posts
-            WHERE post_status = 'publish'
-              AND post_type IN ('page', 'post')
-              AND post_content LIKE '%[contact-form-7%'
-        ");
+        foreach ($post_ids as $post_id) {
+            $post = get_post($post_id);
 
-
-        foreach ($posts as $post) {
             $builder = self::detect_builder($post->ID, $post->post_content);
             $cf7_info = self::extract_cf7_info($post->post_content);
-            // print_r($post->post_content);
+
             foreach ($cf7_info as $cf7) {
                 $results[] = [
                     'ID'         => $post->ID,
@@ -41,6 +64,13 @@ class CF7_Form_Finder_Data
         return $results;
     }
 
+    /**
+     * Detects which page builder is used in the given post.
+     *
+     * @param int    $post_id The post ID.
+     * @param string $content The post content.
+     * @return string The detected builder: 'Elementor', 'WPBakery', or 'Classic/Other'.
+     */
     private static function detect_builder($post_id, $content)
     {
         if (get_post_meta($post_id, '_elementor_edit_mode', true) === 'builder') {
@@ -52,13 +82,19 @@ class CF7_Form_Finder_Data
         }
     }
 
+    /**
+     * Extracts Contact Form 7 shortcode information (ID and title) from post content.
+     * Supports both numeric IDs and hash-based IDs.
+     *
+     * @param string $content The post content.
+     * @return array Array of forms, each with 'id' and 'title'.
+     */
     private static function extract_cf7_info($content)
     {
         $matches = [];
         // preg_match_all('/\[contact-form-7\s+id=["\']?(\d+)["\']?.*?\]/', $content, $matches);
         // preg_match_all('/\[contact-form-7\s+[^]]*id=["\']?(\d+)["\']?[^]]*\]/', $content, $matches);
         preg_match_all('/\[contact-form-7\s+[^]]*id=["\']?([a-zA-Z0-9_-]+)["\']?[^]]*\]/', $content, $matches);
-
 
         $forms = [];
 
@@ -93,6 +129,12 @@ class CF7_Form_Finder_Data
         return $forms;
     }
 
+    /**
+     * Retrieves all published Contact Form 7 forms and builds a map of their hashes to IDs and titles.
+     * Uses reflection to access the private 'hash' property of the form object.
+     *
+     * @return array Associative array mapping form hash => ['id' => form ID, 'title' => form title].
+     */
     private static function get_cf7_hash_map()
     {
         $forms = get_posts([

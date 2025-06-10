@@ -123,7 +123,7 @@ class Cf7_Form_Finder_Admin
 			wp_die('Permission denied.');
 		}
 
-		
+
 		$data = CF7_Form_Finder_Data::get_form_usage();
 
 		header('Content-Type: text/csv');
@@ -149,7 +149,14 @@ class Cf7_Form_Finder_Admin
 		exit;
 	}
 
-
+	/**
+	 * Enqueue admin assets for the CF7 Form Finder plugin.
+	 *
+	 * This function is hooked to the admin_enqueue_scripts action and
+	 * loads the necessary styles and scripts for the plugin's admin page.
+	 *
+	 * @since 1.0.0
+	 */
 	public function enqueue_admin_assets()
 	{
 		$screen = get_current_screen();
@@ -169,13 +176,17 @@ class Cf7_Form_Finder_Admin
 		wp_enqueue_script('cf7ff-datatables-js', plugin_dir_url(__DIR__) . 'assets/js/jquery.dataTables.min.js', ['jquery'], '1.13.6', true);
 
 		// Our custom script
-		wp_enqueue_script('cf7ff-admin-js', plugin_dir_url(__FILE__) . 'js/cf7ff-admin.js', ['cf7ff-datatables-js'], null, true);
+		wp_enqueue_script('cf7ff-admin-js', plugin_dir_url(__FILE__) . 'js/cf7ff-admin.js', ['cf7ff-datatables-js'], '1.13.6', true);
 		wp_localize_script('cf7ff-admin-js', 'cf7ff_admin_params', [
 			'nonce' => wp_create_nonce('cf7_form_finder_export'),
 			'ajaxurl' => admin_url('admin-ajax.php')
 		]);
 	}
-
+	/**
+	 * Handles AJAX request to filter forms based on builder and form ID.
+	 *
+	 * @return void
+	 */
 	public function handle_ajax_filter()
 	{
 		// Verify nonce for security
@@ -195,26 +206,11 @@ class Cf7_Form_Finder_Admin
 		wp_send_json_success(['data' => $data]);
 	}
 
-	// public function handle_get_details()
-	// {
-	// 	check_ajax_referer('cf7_form_finder_export', 'nonce');
-
-	// 	$form_ids = isset($_POST['form_ids']) ? array_map('absint', $_POST['form_ids']) : [];
-
-	// 	if (empty($form_ids)) {
-	// 		wp_send_json_error(['message' => 'No form IDs provided']);
-	// 	}
-
-	// 	$html = '<ul>';
-	// 	foreach ($form_ids as $fid) {
-	// 		$form = get_post($fid);
-	// 		$html .= '<li><strong>ID:</strong> ' . $fid . ' - <strong>Title:</strong> ' . esc_html($form->post_title) . '</li>';
-	// 	}
-	// 	$html .= '</ul>';
-
-	// 	wp_send_json_success(['html' => $html]);
-	// }
-
+	/**
+	 * Handles AJAX request to get details of selected forms.
+	 *
+	 * @return void
+	 */
 	public function handle_get_details()
 	{
 		check_ajax_referer('cf7_form_finder_export', 'nonce');
@@ -254,23 +250,39 @@ class Cf7_Form_Finder_Admin
 
 	public function handle_csv_download()
 	{
+		if (! current_user_can('manage_options')) {
+			wp_die('Permission denied.', 'Error', ['response' => 403]);
+		}
 		check_admin_referer('cf7_form_finder_export', 'nonce');
 
-		$form_ids = isset($_POST['form_ids']) ? explode(',', sanitize_key($_POST['form_ids'])) : [];
-
+		$form_ids_raw = isset($_POST['form_ids']) ? sanitize_text_field(wp_unslash($_POST['form_ids'])) : ''; // Use wp_unslash before explode
+		$form_ids_array = explode(',', $form_ids_raw);
+		$form_ids = array_map('absint', $form_ids_array); // Ensure each ID is a non-negative integer
+		$form_ids = array_filter($form_ids);
 		if (empty($form_ids)) {
 			wp_die('No form selected');
 		}
 
 		header('Content-Type: text/csv');
 		header('Content-Disposition: attachment; filename="cf7-form-usage.csv"');
+		header('Pragma: no-cache'); // Add these for better cache control
+		header('Expires: 0');       // for downloads
 
 		$output = fopen('php://output', 'w');
 		fputcsv($output, ['Form ID', 'Form Title']);
 
 		foreach ($form_ids as $fid) {
-			$form = get_post((int)$fid);
-			fputcsv($output, [$fid, $form->post_title]);
+			$form = get_post($fid); // get_post can handle integer or WP_Post object
+
+
+			if ($form && is_a($form, 'WP_Post') && 'wpcf7_contact_form' === $form->post_type) {
+				fputcsv($output, [$fid, $form->post_title]);
+			} else {
+
+				if (defined('WP_DEBUG') && WP_DEBUG) {
+					error_log('CF7 Form Finder: Could not retrieve form for ID ' . $fid);
+				}
+			}
 		}
 
 		fclose($output);
