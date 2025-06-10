@@ -8,19 +8,19 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://devatmos.com
+ * @link              https://github.com/Dev-Atmos/contact-form7-finder
  * @since             1.0.0
  * @package           Cf7_Form_Finder
  *
  * @wordpress-plugin
- * Plugin Name:       CF7 Form Finder
- * Plugin URI:        https://devatmos.com
+ * Plugin Name:       Contact Form 7 Finder
+ * Plugin URI:        https://github.com/Dev-Atmos/contact-form7-finder
  * Description:       Finds pages using Contact Form 7 and shows which form is used along with the page builder info.
  * Version:           1.0.0
  * Author:            Dev Atmos
  * Author URI:        https://devatmos.com
  * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       cf7-form-finder
  * Domain Path:       /languages
  */

@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       https://dentalfocus.co.uk
+ * @link       https://github.com/Dev-Atmos/contact-form7-finder
  * @since      1.0.0
  *
  * @package    Cf7_Form_Finder

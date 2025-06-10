@@ -19,7 +19,7 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       https://dentalfocus.co.uk
+ * @link       https://github.com/Dev-Atmos/contact-form7-finder
  * @since      1.0.0
  *
  * @package    Cf7_Form_Finder

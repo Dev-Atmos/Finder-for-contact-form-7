@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       https://dentalfocus.co.uk
+ * @link       https://github.com/Dev-Atmos/contact-form7-finder
  * @since      1.0.0
  *
  * @package    Cf7_Form_Finder

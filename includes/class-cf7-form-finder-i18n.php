@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       https://dentalfocus.co.uk
+ * @link       https://github.com/Dev-Atmos/contact-form7-finder
  * @since      1.0.0
  *
  * @package    Cf7_Form_Finder
