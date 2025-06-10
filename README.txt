@@ -1,9 +1,9 @@
 === Contact Form 7 Finder ===
 Contributors: DevAtmos
-Tags: contact form 7, shortcode scanner, form finder, admin tools
+Tags: contact form 7 finder, shortcode scanner, form finder, admin tools
 Requires at least: 5.6
-Tested up to: 6.5
-Stable tag: 1.0.0
+Tested up to: 6.8
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ Features:
 
 1. Upload the plugin to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the ‘Plugins’ menu in WordPress.
-3. Go to **Tools > Contact Form 7 Finder**.
+3. Go to **Contact Form 7 Finder**.
 
 == Frequently Asked Questions ==
 

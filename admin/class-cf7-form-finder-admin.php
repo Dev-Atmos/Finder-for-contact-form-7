@@ -123,6 +123,7 @@ class Cf7_Form_Finder_Admin
 			wp_die('Permission denied.');
 		}
 
+		
 		$data = CF7_Form_Finder_Data::get_form_usage();
 
 		header('Content-Type: text/csv');
@@ -148,14 +149,24 @@ class Cf7_Form_Finder_Admin
 		exit;
 	}
 
+
 	public function enqueue_admin_assets()
 	{
 		$screen = get_current_screen();
 		if ($screen->id !== 'toplevel_page_cf7-form-finder') return;
 
 		// DataTables CSS & JS
-		wp_enqueue_style('cf7ff-datatables-css', 'https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css');
-		wp_enqueue_script('cf7ff-datatables-js', 'https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js', ['jquery'], null, true);
+		wp_enqueue_style(
+			'cf7ff-datatables-css',
+			plugin_dir_url(__DIR__) . '/assets/css/jquery.dataTables.min.css',
+			[],
+			'1.13.6',
+			'all'
+		);
+		// wp_enqueue_style('cf7ff-datatables-css', 'https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css');
+
+		// wp_enqueue_script('cf7ff-datatables-js', 'https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js', ['jquery'], null, true);
+		wp_enqueue_script('cf7ff-datatables-js', plugin_dir_url(__DIR__) . 'assets/js/jquery.dataTables.min.js', ['jquery'], '1.13.6', true);
 
 		// Our custom script
 		wp_enqueue_script('cf7ff-admin-js', plugin_dir_url(__FILE__) . 'js/cf7ff-admin.js', ['cf7ff-datatables-js'], null, true);
@@ -168,12 +179,13 @@ class Cf7_Form_Finder_Admin
 	public function handle_ajax_filter()
 	{
 		// Verify nonce for security
-		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'cf7_form_finder_export')) {
+		if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_key($_POST['nonce']), 'cf7_form_finder_export')) {
 			wp_send_json_error(['message' => 'Invalid nonce']);
 		}
 
-		$builder = isset($_POST['builder']) ? sanitize_text_field($_POST['builder']) : '';
+		$builder = isset($_POST['builder']) ? sanitize_key($_POST['builder']) : '';
 		$form_id = isset($_POST['form_id']) ? absint($_POST['form_id']) : 0;
+
 
 		$data = CF7_Form_Finder_Data::get_form_usage($builder, $form_id);
 
@@ -244,7 +256,7 @@ class Cf7_Form_Finder_Admin
 	{
 		check_admin_referer('cf7_form_finder_export', 'nonce');
 
-		$form_ids = isset($_POST['form_ids']) ? explode(',', sanitize_text_field($_POST['form_ids'])) : [];
+		$form_ids = isset($_POST['form_ids']) ? explode(',', sanitize_key($_POST['form_ids'])) : [];
 
 		if (empty($form_ids)) {
 			wp_die('No form selected');
