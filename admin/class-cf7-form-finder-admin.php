@@ -74,6 +74,7 @@ class Cf7_Form_Finder_Admin
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		wp_enqueue_style('cf7ff-bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', [], '5.3.3');
 
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/cf7-form-finder-admin.css', array(), $this->version, 'all');
 	}
@@ -97,15 +98,15 @@ class Cf7_Form_Finder_Admin
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
+		wp_enqueue_script('cf7ff-bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', [], '5.3.3', true);
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/cf7-form-finder-admin.js', array('jquery'), $this->version, false);
 	}
 
 	public function add_plugin_admin_menu()
 	{
 		add_menu_page(
-			'Contact Form 7 Finder',
-			'Contact Form 7 Finder',
+			'CF 7 form Finder',
+			'CF 7 form Finder',
 			'manage_options',
 			'cf7-form-finder',
 			[$this, 'display_plugin_admin_page'],
@@ -136,6 +137,7 @@ class Cf7_Form_Finder_Admin
 
 		foreach ($data as $row) {
 			fputcsv($output, [
+				1,
 				$row['title'],
 				$row['type'],
 				$row['builder'],
@@ -150,7 +152,7 @@ class Cf7_Form_Finder_Admin
 	}
 
 	/**
-	 * Enqueue admin assets for the Contact Form 7 Finder plugin.
+	 * Enqueue admin assets for the CF 7 form Finder plugin.
 	 *
 	 * This function is hooked to the admin_enqueue_scripts action and
 	 * loads the necessary styles and scripts for the plugin's admin page.
@@ -280,7 +282,7 @@ class Cf7_Form_Finder_Admin
 			} else {
 
 				if (defined('WP_DEBUG') && WP_DEBUG) {
-					error_log('Contact Form 7 Finder: Could not retrieve form for ID ' . $fid);
+					error_log('CF 7 form Finder: Could not retrieve form for ID ' . $fid);
 				}
 			}
 		}

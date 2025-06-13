@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class CF7_Form_Finder_Data
  *
@@ -31,7 +32,7 @@ class CF7_Form_Finder_Data
     {
         $results = [];
 
-        // Query published pages and posts containing [contact-form-7 in content
+        // Query published pages and posts containing [cf-7-finder in content
         $args = [
             'post_type'      => ['post', 'page'],
             'post_status'    => 'publish',
@@ -63,6 +64,41 @@ class CF7_Form_Finder_Data
 
         return $results;
     }
+    /**
+     * Scans the active theme for hardcoded Contact Form 7 shortcodes using do_shortcode().
+     *
+     * @return array List of files and shortcode instances found.
+     */
+    public static function scan_theme_for_hardcoded_cf7()
+    {
+        $shortcodes = [];
+        // $cf7_info_array = [];
+        $theme_dir = get_stylesheet_directory(); // Child theme or active theme path
+
+        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($theme_dir));
+
+        foreach ($rii as $file) {
+            if ($file->isDir()) continue;
+            if (pathinfo($file, PATHINFO_EXTENSION) !== 'php') continue;
+
+            $content = file_get_contents($file->getPathname());
+
+            if (preg_match_all('/do_shortcode\s*\(\s*[\'"]\[contact-form-7[^\]]*\][\'"]\s*\)/i', $content, $matches)) {
+                // foreach ($matches[0] as $value) {
+                    $cf7_info = self::extract_cf7_info($matches[0][0]);
+                    $cf7_info_array = $cf7_info;
+                // }
+                $shortcodes[] = [
+                    'file' => str_replace($theme_dir . '/', '', $file->getPathname()),
+                    'matches' => $matches[0],
+                    'cf7_info' => $cf7_info_array
+                ];
+            }
+        }
+
+        return $shortcodes;
+    }
+
 
     /**
      * Detects which page builder is used in the given post.

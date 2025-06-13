@@ -63,6 +63,36 @@ jQuery(document).ready(function ($) {
             }
         });
     });
+    $('#cf7ff-view-hardcoded-report').on('click', function () {
+        $('#cf7ff-modal-content').html('');
+        let selected = $('.cf7ff-select-hardcoded-row:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        if (selected.length === 0) {
+            alert('Please select at least one form.');
+            return;
+        }
+
+        // Load detailed info via AJAX
+        $.ajax({
+            url: ajaxurl,
+            method: 'POST',
+            data: {
+                action: 'cf7_form_finder_get_details',
+                form_ids: selected,
+                nonce: cf7ff_admin_params.nonce
+            },
+            success: function (res) {
+                if (res.success) {
+                    $('#cf7ff-modal-content').html(res.data.html);
+                    $('#cf7ff-modal, #cf7ff-modal-overlay').fadeIn();
+                } else {
+                    alert('Failed to load report.');
+                }
+            }
+        });
+    });
 
     $('#cf7ff-modal-close, #cf7ff-modal-overlay').on('click', function () {
         $('#cf7ff-modal, #cf7ff-modal-overlay').fadeOut();

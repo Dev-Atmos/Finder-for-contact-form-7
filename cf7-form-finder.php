@@ -3,19 +3,14 @@
 /**
  * The plugin bootstrap file
  *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
  * @link              https://github.com/Dev-Atmos/contact-form7-finder
  * @since             1.0.0
- * @package           Cf7_Form_Finder
+ * @package           Cf7_Finder
  *
  * @wordpress-plugin
- * Plugin Name:       Contact Form 7 Finder
+ * Plugin Name:       CF7 Finder
  * Plugin URI:        https://github.com/Dev-Atmos/contact-form7-finder
- * Description:       Finds pages using Contact Form 7 and shows which form is used along with the page builder info.
+ * Description:       Finds pages with Contact Form 7, showing forms used and page builder details.
  * Version:           1.0.0
  * Author:            Dev Atmos
  * Author URI:        https://devatmos.com
@@ -24,6 +19,7 @@
  * Text Domain:       cf7-form-finder
  * Domain Path:       /languages
  */
+
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {

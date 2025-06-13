@@ -35,7 +35,7 @@ class Cf7_Form_Finder_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'cf7-form-finder',
+			'cf7-finder',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
