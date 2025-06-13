@@ -117,7 +117,13 @@
                         else :
                             ?>
                             <tr>
-                                <td colspan="6">No pages with Contact Form 7 found.</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
