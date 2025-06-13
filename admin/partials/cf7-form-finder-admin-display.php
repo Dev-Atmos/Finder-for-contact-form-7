@@ -95,33 +95,34 @@
 
                         </tr>
                     </thead>
-                    <?php
-                    $data = CF7_Form_Finder_Data::get_form_usage();
-
-                    if (!empty($data)) :
-                        foreach ($data as $row) :
-                    ?>
-                            <tr>
-                                <td><input type="checkbox" class="cf7ff-select-row" value="<?php echo esc_attr($row['form_id']); ?>"></td>
-
-                                <td><?php echo esc_html($row['title']); ?></td>
-                                <td><?php echo esc_html($row['type']); ?></td>
-                                <td><?php echo esc_html($row['builder']); ?></td>
-                                <td><?php echo esc_html($row['form_id']); ?></td>
-                                <td><?php echo esc_html($row['form_title']); ?></td>
-                                <td><a href="<?php echo esc_url($row['url']); ?>" target="_blank">View</a></td>
-                            </tr>
+                    <tbody>
                         <?php
-                        endforeach;
-                    else :
-                        ?>
-                        <tr>
-                            <td colspan="6">No pages with Contact Form 7 found.</td>
-                        </tr>
-                    <?php endif; ?>
+                        $data = CF7_Form_Finder_Data::get_form_usage();
 
+                        if (!empty($data)) :
+                            foreach ($data as $row) :
+                        ?>
+                                <tr>
+                                    <td><input type="checkbox" class="cf7ff-select-row" value="<?php echo esc_attr($row['form_id']); ?>"></td>
+
+                                    <td><?php echo esc_html($row['title']); ?></td>
+                                    <td><?php echo esc_html($row['type']); ?></td>
+                                    <td><?php echo esc_html($row['builder']); ?></td>
+                                    <td><?php echo esc_html($row['form_id']); ?></td>
+                                    <td><?php echo esc_html($row['form_title']); ?></td>
+                                    <td><a href="<?php echo esc_url($row['url']); ?>" target="_blank">View</a></td>
+                                </tr>
+                            <?php
+                            endforeach;
+                        else :
+                            ?>
+                            <tr>
+                                <td colspan="6">No pages with Contact Form 7 found.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
                 </table>
-                <button id="cf7ff-view-report" class="button">View Detailed Report</button>
+                <button id="cf7ff-view-report" class="button btn btn-primary">View Detailed Report</button>
                 <!-- <button id="cf7ff-download-report" class="button">Download CSV</button> -->
 
 
@@ -155,12 +156,12 @@
 
                                         <li>
                                             <div class="form-floating mb-4">
-                                                <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<?= $item['cf7_info'][0]['id'] ?>" disabled>
-                                                <label for="floatingInputValue" class="">Form ID</label>
+                                                <input type="text" class="form-control" id="form_id" placeholder="name@example.com" value="<?php echo esc_attr($item['cf7_info'][0]['id']) ?>" disabled>
+                                                <label for="form_id" class="">Form ID</label>
                                             </div>
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<?= $item['cf7_info'][0]['title'] ?>" disabled>
-                                                <label for="floatingInputValue" class="">Form Title</label>
+                                                <input type="text" class="form-control" id="form_title" placeholder="name@example.com" value="<?php echo esc_attr($item['cf7_info'][0]['title']) ?>" disabled>
+                                                <label for="form_title" class="">Form Title</label>
                                             </div>
                                         </li>
 
@@ -178,7 +179,7 @@
             <?php else : ?>
                 <p class="text-muted">No hardcoded shortcodes found in the current theme.</p>
             <?php endif; ?>
-            <button id="cf7ff-view-hardcoded-report" class="button">View Detailed Report</button>
+            <button id="cf7ff-view-hardcoded-report" class="button btn btn-primary">View Detailed Report</button>
         </div>
         <div id="cf7ff-modal" style="
                                     display: none;

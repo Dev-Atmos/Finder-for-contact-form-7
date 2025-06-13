@@ -156,8 +156,10 @@ class Cf7_Form_Finder {
 
 		$plugin_admin = new Cf7_Form_Finder_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		// $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+		// $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'maybe_enqueue_admin_assets' );
+
 		$this->loader->add_action('admin_menu', $plugin_admin, 'add_plugin_admin_menu');
 		$this->loader->add_action('admin_post_cf7_form_finder_export_csv', $plugin_admin, 'handle_csv_export');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_admin_assets');

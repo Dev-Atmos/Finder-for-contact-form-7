@@ -55,6 +55,17 @@ class Cf7_Form_Finder_Admin
 		$this->version = $version;
 	}
 
+
+
+	public function maybe_enqueue_admin_assets($hook_suffix)
+	{
+		if ($hook_suffix !== 'toplevel_page_cf7-form-finder') {
+			return;
+		}
+		$this->enqueue_styles();
+		$this->enqueue_scripts();
+	}
+
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
@@ -62,7 +73,11 @@ class Cf7_Form_Finder_Admin
 	 */
 	public function enqueue_styles()
 	{
+		// global $hook; // Use global $hook to check the current admin page
 
+		// if ($hook !== 'cf7-form-finder') {
+		// 	return;
+		// }
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
@@ -74,7 +89,7 @@ class Cf7_Form_Finder_Admin
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_style('cf7ff-bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', [], '5.3.3');
+		wp_enqueue_style('cf7ff-bootstrap-css',  plugin_dir_url(__DIR__) . '/assets/css/bootstrap.min.css', [], '5.3.3');
 
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/cf7-form-finder-admin.css', array(), $this->version, 'all');
 	}
@@ -86,7 +101,10 @@ class Cf7_Form_Finder_Admin
 	 */
 	public function enqueue_scripts()
 	{
-
+		// global $hook;
+		// if ($hook !== 'toplevel_page_cf7-form-finder') {
+		// 	return;
+		// }
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
@@ -98,7 +116,7 @@ class Cf7_Form_Finder_Admin
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_script('cf7ff-bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', [], '5.3.3', true);
+		wp_enqueue_script('cf7ff-bootstrap-js', plugin_dir_url(__DIR__) . '/assets/js/bootstrap.bundle.min.js', [], '5.3.3', true);
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/cf7-form-finder-admin.js', array('jquery'), $this->version, false);
 	}
 
