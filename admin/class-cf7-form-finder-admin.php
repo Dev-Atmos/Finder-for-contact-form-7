@@ -3,11 +3,11 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://github.com/Dev-Atmos/contact-form7-finder
+ * @link       https://github.com/Dev-Atmos/Finder-for-contact-form-7
  * @since      1.0.0
  *
- * @package    Cf7_Form_Finder
- * @subpackage Cf7_Form_Finder/admin
+ * @package    Finder_for_CF7
+ * @subpackage Finder_for_CF7/admin
  */
 
 /**
@@ -16,8 +16,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Cf7_Form_Finder
- * @subpackage Cf7_Form_Finder/admin
+ * @package    Finder_for_CF7
+ * @subpackage Finder_for_CF7/admin
  * @author     Dental Focus <info@test.com>
  */
 class Cf7_Form_Finder_Admin

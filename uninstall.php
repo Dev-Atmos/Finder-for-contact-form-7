@@ -22,7 +22,7 @@
  * @link       https://github.com/Dev-Atmos/contact-form7-finder
  * @since      1.0.0
  *
- * @package    Cf7_Form_Finder
+ * @package    Finder_for_CF7
  */
 
 // If uninstall not called from WordPress, then exit.

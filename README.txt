@@ -1,9 +1,9 @@
-=== CF7 Finder ===
+=== Finder for Contact Form 7 ===
 Contributors: DevAtmos
 Tags: CF7 form Finder, shortcode scanner, form finder, admin tools, Contact Form7
 Requires at least: 5.6
 Tested up to: 6.8
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,12 +24,12 @@ Features:
 == Installation ==
 
 You can download and contribute to this plugin on GitHub:  
-https://github.com/Dev-Atmos/contact-form7-finder
+https://github.com/Dev-Atmos/Finder-for-contact-form-7
 
 1. Download or clone the repository to your `/wp-content/plugins/` directory:
-   `git clone https://github.com/Dev-Atmos/contact-form7-finder.git`
+   `git clone https://github.com/Dev-Atmos/Finder-for-contact-form-7.git`
 2. Activate the plugin through the ‘Plugins’ menu in WordPress.
-3. Go to **CF 7 form Finder** in your WordPress admin.
+3. Go to **Finder for Contact Form 7** in your WordPress admin.
 
 == Frequently Asked Questions ==
 

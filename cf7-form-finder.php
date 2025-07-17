@@ -5,18 +5,18 @@
  *
  * @link              https://github.com/Dev-Atmos/contact-form7-finder
  * @since             1.0.0
- * @package           Cf7_Finder
+ * @package           Finder_for_CF7
  *
  * @wordpress-plugin
- * Plugin Name:       CF7 Finder
- * Plugin URI:        https://github.com/Dev-Atmos/contact-form7-finder
+ * Plugin Name:       Finder for Contact Form 7
+ * Plugin URI:        https://github.com/Dev-Atmos/Finder-for-contact-form-7
  * Description:       Finds pages with Contact Form 7, showing forms used and page builder details.
  * Version:           1.0.0
  * Author:            Dev Atmos
  * Author URI:        https://devatmos.com
  * License:           GPL-2.0+
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       cf7-form-finder
+ * Text Domain:       finder-for-cf7
  * Domain Path:       /languages
  */
 

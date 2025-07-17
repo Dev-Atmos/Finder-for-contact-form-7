@@ -5,11 +5,11 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://github.com/Dev-Atmos/contact-form7-finder
+ * @link       https://github.com/Dev-Atmos/Finder-for-contact-form-7
  * @since      1.0.0
  *
- * @package    Cf7_Form_Finder
- * @subpackage Cf7_Form_Finder/admin/partials
+ * @package    Finder_for_CF7
+ * @subpackage Finder_for_CF7/admin/partials
  */
 ?>
 

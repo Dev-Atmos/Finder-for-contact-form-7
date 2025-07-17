@@ -8,8 +8,8 @@
  * @link       https://github.com/Dev-Atmos/contact-form7-finder
  * @since      1.0.0
  *
- * @package    Cf7_Form_Finder
- * @subpackage Cf7_Form_Finder/public/partials
+ * @package    Finder_for_CF7
+ * @subpackage Finder_for_CF7/public/partials
  */
 ?>
 

@@ -6,8 +6,8 @@
  * @link       https://github.com/Dev-Atmos/contact-form7-finder
  * @since      1.0.0
  *
- * @package    Cf7_Form_Finder
- * @subpackage Cf7_Form_Finder/public
+ * @package    Finder_for_CF7
+ * @subpackage Finder_for_CF7/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Cf7_Form_Finder
- * @subpackage Cf7_Form_Finder/public
+ * @package    Finder_for_CF7
+ * @subpackage Finder_for_CF7/public
  * @author     Dental Focus <info@test.com>
  */
-class Cf7_Form_Finder_Public {
+class Finder_for_CF7_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,10 +65,10 @@ class Cf7_Form_Finder_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Cf7_Form_Finder_Loader as all of the hooks are defined
+		 * defined in Finder_for_CF7_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Cf7_Form_Finder_Loader will then create the relationship
+		 * The Finder_for_CF7_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -88,10 +88,10 @@ class Cf7_Form_Finder_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Cf7_Form_Finder_Loader as all of the hooks are defined
+		 * defined in Finder_for_CF7_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Cf7_Form_Finder_Loader will then create the relationship
+		 * The Finder_for_CF7_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

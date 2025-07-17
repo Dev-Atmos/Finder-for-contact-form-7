@@ -6,8 +6,8 @@
  * @link       https://github.com/Dev-Atmos/contact-form7-finder
  * @since      1.0.0
  *
- * @package    Cf7_Form_Finder
- * @subpackage Cf7_Form_Finder/includes
+ * @package    Finder_for_CF7
+ * @subpackage Finder_for_CF7/includes
  */
 
 /**
@@ -16,8 +16,8 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Cf7_Form_Finder
- * @subpackage Cf7_Form_Finder/includes
+ * @package    Finder_for_CF7
+ * @subpackage Finder_for_CF7/includes
  * @author     Dental Focus <info@test.com>
  */
 class Cf7_Form_Finder_Deactivator {
