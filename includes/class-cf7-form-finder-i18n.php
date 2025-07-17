@@ -33,12 +33,12 @@ class Cf7_Form_Finder_i18n {
 	 * @since    1.0.0
 	 */
 	public function load_plugin_textdomain() {
-
+/* Deprecated 
 		load_plugin_textdomain(
 			'cf7-finder',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+		); */
 
 	}
 
