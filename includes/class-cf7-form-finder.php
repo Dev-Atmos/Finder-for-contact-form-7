@@ -7,7 +7,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       https://github.com/Dev-Atmos/contact-form7-finder
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Finder_for_CF7
  * @subpackage Finder_for_CF7/includes

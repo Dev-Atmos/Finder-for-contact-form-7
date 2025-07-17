@@ -7,7 +7,7 @@
  * so that it is ready for translation.
  *
  * @link       https://github.com/Dev-Atmos/contact-form7-finder
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Finder_for_CF7
  * @subpackage Finder_for_CF7/includes
@@ -30,7 +30,7 @@ class Cf7_Form_Finder_i18n {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 */
 	public function load_plugin_textdomain() {
 /* Deprecated 

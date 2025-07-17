@@ -4,14 +4,14 @@
  * The plugin bootstrap file
  *
  * @link              https://github.com/Dev-Atmos/contact-form7-finder
- * @since             1.0.0
+ * @since             1.1.0
  * @package           Finder_for_CF7
  *
  * @wordpress-plugin
  * Plugin Name:       Finder for Contact Form 7
  * Plugin URI:        https://github.com/Dev-Atmos/Finder-for-contact-form-7
  * Description:       Finds pages with Contact Form 7, showing forms used and page builder details.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Dev Atmos
  * Author URI:        https://devatmos.com
  * License:           GPL-2.0+
@@ -67,7 +67,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-cf7-form-finder.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
+ * @since    1.1.0
  */
 function run_cf7_form_finder() {
 
