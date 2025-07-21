@@ -2,3 +2,23 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+#cf7ff-modal pre {
+    background: #f9f9f9;
+    padding: 8px;
+    border: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+#cf7ff-modal::-webkit-scrollbar {
+    width: 10px;
+}
+
+#cf7ff-modal::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 5px;
+}
+
+#cf7ff-modal::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}

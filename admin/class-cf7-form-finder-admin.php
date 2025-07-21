@@ -1,5 +1,5 @@
 <?php
-
+defined('ABSPATH') || exit;
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -20,6 +20,8 @@
  * @subpackage Finder_for_CF7/admin
  * @author     Dental Focus <info@test.com>
  */
+
+
 class Cf7_Form_Finder_Admin
 {
 
@@ -59,7 +61,7 @@ class Cf7_Form_Finder_Admin
 
 	public function maybe_enqueue_admin_assets($hook_suffix)
 	{
-		if ($hook_suffix !== 'toplevel_page_cf7-form-finder') {
+		if ($hook_suffix !== 'toplevel_page_cf7ff') {
 			return;
 		}
 		$this->enqueue_styles();
@@ -102,7 +104,7 @@ class Cf7_Form_Finder_Admin
 	public function enqueue_scripts()
 	{
 		// global $hook;
-		// if ($hook !== 'toplevel_page_cf7-form-finder') {
+		// if ($hook !== 'toplevel_page_cf7ff') {
 		// 	return;
 		// }
 		/**
@@ -123,10 +125,10 @@ class Cf7_Form_Finder_Admin
 	public function add_plugin_admin_menu()
 	{
 		add_menu_page(
-			'CF 7 form Finder',
-			'CF 7 form Finder',
+			'Finder for CF7',
+			'Finder for CF7',
 			'manage_options',
-			'cf7-form-finder',
+			'finder-for-cf7',
 			[$this, 'display_plugin_admin_page'],
 			'dashicons-search',
 			76 // Position below "Settings"
@@ -138,7 +140,7 @@ class Cf7_Form_Finder_Admin
 	}
 	public function handle_csv_export()
 	{
-		if (!current_user_can('manage_options') || !check_admin_referer('cf7_form_finder_export')) {
+		if (!current_user_can('manage_options') || !check_admin_referer('cf7ff_form_finder_export')) {
 			wp_die('Permission denied.');
 		}
 
@@ -180,7 +182,7 @@ class Cf7_Form_Finder_Admin
 	public function enqueue_admin_assets()
 	{
 		$screen = get_current_screen();
-		if ($screen->id !== 'toplevel_page_cf7-form-finder') return;
+		if ($screen->id !== 'toplevel_page_cf7ff') return;
 
 		// DataTables CSS & JS
 		wp_enqueue_style(
@@ -190,15 +192,13 @@ class Cf7_Form_Finder_Admin
 			'1.13.6',
 			'all'
 		);
-		// wp_enqueue_style('cf7ff-datatables-css', 'https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css');
-
-		// wp_enqueue_script('cf7ff-datatables-js', 'https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js', ['jquery'], null, true);
+		
 		wp_enqueue_script('cf7ff-datatables-js', plugin_dir_url(__DIR__) . 'assets/js/jquery.dataTables.min.js', ['jquery'], '1.13.6', true);
 
 		// Our custom script
 		wp_enqueue_script('cf7ff-admin-js', plugin_dir_url(__FILE__) . 'js/cf7ff-admin.js', ['cf7ff-datatables-js'], '1.13.6', true);
 		wp_localize_script('cf7ff-admin-js', 'cf7ff_admin_params', [
-			'nonce' => wp_create_nonce('cf7_form_finder_export'),
+			'nonce' => wp_create_nonce('cf7ff_form_finder_export'),
 			'ajaxurl' => admin_url('admin-ajax.php')
 		]);
 	}
@@ -210,7 +210,7 @@ class Cf7_Form_Finder_Admin
 	public function handle_ajax_filter()
 	{
 		// Verify nonce for security
-		if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_key($_POST['nonce']), 'cf7_form_finder_export')) {
+		if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_key($_POST['nonce']), 'cf7ff_form_finder_export')) {
 			wp_send_json_error(['message' => 'Invalid nonce']);
 		}
 
@@ -233,7 +233,7 @@ class Cf7_Form_Finder_Admin
 	 */
 	public function handle_get_details()
 	{
-		check_ajax_referer('cf7_form_finder_export', 'nonce');
+		check_ajax_referer('cf7ff_form_finder_export', 'nonce');
 
 		$form_ids = isset($_POST['form_ids']) ? array_map('absint', $_POST['form_ids']) : [];
 
@@ -273,7 +273,7 @@ class Cf7_Form_Finder_Admin
 		if (! current_user_can('manage_options')) {
 			wp_die('Permission denied.', 'Error', ['response' => 403]);
 		}
-		check_admin_referer('cf7_form_finder_export', 'nonce');
+		check_admin_referer('cf7ff_form_finder_export', 'nonce');
 
 		$form_ids_raw = isset($_POST['form_ids']) ? sanitize_text_field(wp_unslash($_POST['form_ids'])) : ''; // Use wp_unslash before explode
 		$form_ids_array = explode(',', $form_ids_raw);
@@ -300,7 +300,7 @@ class Cf7_Form_Finder_Admin
 			} else {
 
 				if (defined('WP_DEBUG') && WP_DEBUG) {
-					error_log('CF 7 form Finder: Could not retrieve form for ID ' . $fid);
+					error_log('Finder for CF7: Could not retrieve form for ID ' . $fid);
 				}
 			}
 		}

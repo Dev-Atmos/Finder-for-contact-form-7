@@ -1,5 +1,5 @@
 <?php
-
+defined('ABSPATH') || exit;
 /**
  * Class CF7_Form_Finder_Data
  *

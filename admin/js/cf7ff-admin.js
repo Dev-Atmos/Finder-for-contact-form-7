@@ -21,7 +21,7 @@ jQuery(document).ready(function ($) {
             url: ajaxurl,
             method: 'POST',
             data: {
-                action: 'cf7_form_finder_filter',
+                action: 'cf7ff_filter',
                 builder: builder,
                 nonce: cf7ff_admin_params.nonce,
                 form_id: form_id,
@@ -49,7 +49,7 @@ jQuery(document).ready(function ($) {
             url: ajaxurl,
             method: 'POST',
             data: {
-                action: 'cf7_form_finder_get_details',
+                action: 'cf7ff_get_details',
                 form_ids: selected,
                 nonce: cf7ff_admin_params.nonce
             },
@@ -79,7 +79,7 @@ jQuery(document).ready(function ($) {
             url: ajaxurl,
             method: 'POST',
             data: {
-                action: 'cf7_form_finder_get_details',
+                action: 'cf7ff_get_details',
                 form_ids: selected,
                 nonce: cf7ff_admin_params.nonce
             },

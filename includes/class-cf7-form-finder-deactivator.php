@@ -1,5 +1,5 @@
 <?php
-
+defined('ABSPATH') || exit;
 /**
  * Fired during plugin deactivation
  *
@@ -20,6 +20,7 @@
  * @subpackage Finder_for_CF7/includes
  * @author     Dental Focus <info@test.com>
  */
+
 class Cf7_Form_Finder_Deactivator {
 
 	/**

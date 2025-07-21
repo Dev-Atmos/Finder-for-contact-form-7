@@ -1,5 +1,5 @@
 <?php
-
+defined('ABSPATH') || exit;
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,30 +11,15 @@
  * @package    Finder_for_CF7
  * @subpackage Finder_for_CF7/admin/partials
  */
+
+
+
+
+
+
 ?>
 
-<style>
-    #cf7ff-modal pre {
-        background: #f9f9f9;
-        padding: 8px;
-        border: 1px solid #ddd;
-        overflow-x: auto;
-    }
-</style>
-<style>
-    #cf7ff-modal::-webkit-scrollbar {
-        width: 10px;
-    }
 
-    #cf7ff-modal::-webkit-scrollbar-thumb {
-        background-color: #aaa;
-        border-radius: 5px;
-    }
-
-    #cf7ff-modal::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-</style>
 <div>
     <h1>CF7 form Finder</h1>
     <ul class="nav nav-tabs" id="cf7ffTab" role="tablist">
@@ -59,8 +44,8 @@
 
                 <!-- <p>This plugin lists all published pages and posts using Contact Form 7 and shows which builder (Elementor/WPBakery) is used.</p> -->
                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                    <input type="hidden" name="action" value="cf7_form_finder_export_csv">
-                    <?php wp_nonce_field('cf7_form_finder_export'); ?>
+                    <input type="hidden" name="action" value="cf7ff_export_csv">
+                    <?php wp_nonce_field('cf7ff_export'); ?>
                     <input type="submit" class="button button-primary" value="Export to CSV">
                 </form>
                 <br>

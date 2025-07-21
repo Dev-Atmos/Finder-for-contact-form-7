@@ -1,5 +1,5 @@
 <?php
-
+defined('ABSPATH') || exit;
 /**
  * The file that defines the core plugin class
  *
@@ -27,6 +27,7 @@
  * @subpackage Finder_for_CF7/includes
  * @author     Dental Focus <info@test.com>
  */
+
 class Cf7_Form_Finder {
 
 	/**
@@ -123,7 +124,7 @@ class Cf7_Form_Finder {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cf7-form-finder-public.php';
 		
 
-		$this->loader = new Finder_for_CF7_Loader();
+		$this->loader = new Cf7_Form_Finder_Loader();
 
 	}
 
@@ -161,10 +162,10 @@ class Cf7_Form_Finder {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'maybe_enqueue_admin_assets' );
 
 		$this->loader->add_action('admin_menu', $plugin_admin, 'add_plugin_admin_menu');
-		$this->loader->add_action('admin_post_cf7_form_finder_export_csv', $plugin_admin, 'handle_csv_export');
+		$this->loader->add_action('admin_post_cf7ff_form_finder_export_csv', $plugin_admin, 'handle_csv_export');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_admin_assets');
-		$this->loader->add_action('wp_ajax_cf7_form_finder_filter', $plugin_admin, 'handle_ajax_filter');
-		$this->loader->add_action('wp_ajax_cf7_form_finder_get_details', $plugin_admin, 'handle_get_details');
+		$this->loader->add_action('wp_ajax_cf7ff_filter', $plugin_admin, 'handle_ajax_filter');
+		$this->loader->add_action('wp_ajax_cf7ff_get_details', $plugin_admin, 'handle_get_details');
 		$this->loader->add_action('admin_post_cf7_form_finder_download_csv', $plugin_admin, 'handle_csv_download');
 
 
