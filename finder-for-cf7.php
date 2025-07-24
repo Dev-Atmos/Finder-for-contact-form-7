@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'CF7_FORM_FINDER_VERSION', '1.1.0' );
+define( 'CF7FF_VERSION', '1.1.0' );
 
 /**
  * The code that runs during plugin activation.
@@ -42,7 +42,7 @@ define( 'CF7_FORM_FINDER_VERSION', '1.1.0' );
  */
 function cf7ff_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cf7-form-finder-activator.php';
-	Cf7_Form_Finder_Activator::activate();
+	cf7ff_Activator::activate();
 }
 
 /**
@@ -51,7 +51,7 @@ function cf7ff_activate() {
  */
 function cf7ff_deactivate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cf7-form-finder-deactivator.php';
-	Cf7_Form_Finder_Deactivator::deactivate();
+	cf7ff_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'cf7ff_activate' );
@@ -74,7 +74,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-cf7-form-finder.php';
  */
 function run_cf7ff() {
 
-	$plugin = new Cf7_Form_Finder();
+	$plugin = new cf7ff();
 	$plugin->run();
 
 }

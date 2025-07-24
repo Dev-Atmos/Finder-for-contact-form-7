@@ -28,7 +28,7 @@ defined('ABSPATH') || exit;
  * @author     Dental Focus <info@test.com>
  */
 
-class Cf7_Form_Finder {
+class cf7ff {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -36,7 +36,7 @@ class Cf7_Form_Finder {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Cf7_Form_Finder_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      cf7ff_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -68,8 +68,8 @@ class Cf7_Form_Finder {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'CF7_FORM_FINDER_VERSION' ) ) {
-			$this->version = CF7_FORM_FINDER_VERSION;
+		if ( defined( 'cf7ff_VERSION' ) ) {
+			$this->version = cf7ff_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -87,10 +87,10 @@ class Cf7_Form_Finder {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Cf7_Form_Finder_Loader. Orchestrates the hooks of the plugin.
-	 * - Cf7_Form_Finder_i18n. Defines internationalization functionality.
-	 * - Cf7_Form_Finder_Admin. Defines all hooks for the admin area.
-	 * - Cf7_Form_Finder_Public. Defines all hooks for the public side of the site.
+	 * - cf7ff_Loader. Orchestrates the hooks of the plugin.
+	 * - cf7ff_i18n. Defines internationalization functionality.
+	 * - cf7ff_Admin. Defines all hooks for the admin area.
+	 * - cf7ff_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -124,7 +124,7 @@ class Cf7_Form_Finder {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cf7-form-finder-public.php';
 		
 
-		$this->loader = new Cf7_Form_Finder_Loader();
+		$this->loader = new cf7ff_Loader();
 
 	}
 
@@ -139,7 +139,7 @@ class Cf7_Form_Finder {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Cf7_Form_Finder_i18n();
+		$plugin_i18n = new cf7ff_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 		
@@ -155,7 +155,7 @@ class Cf7_Form_Finder {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Cf7_Form_Finder_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new cf7ff_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		// $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		// $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -166,7 +166,7 @@ class Cf7_Form_Finder {
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_admin_assets');
 		$this->loader->add_action('wp_ajax_cf7ff_filter', $plugin_admin, 'handle_ajax_filter');
 		$this->loader->add_action('wp_ajax_cf7ff_get_details', $plugin_admin, 'handle_get_details');
-		$this->loader->add_action('admin_post_cf7_form_finder_download_csv', $plugin_admin, 'handle_csv_download');
+		$this->loader->add_action('admin_post_cf7ff_download_csv', $plugin_admin, 'handle_csv_download');
 
 
 
@@ -183,7 +183,7 @@ class Cf7_Form_Finder {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Cf7_Form_Finder_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new cf7ff_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -216,7 +216,7 @@ class Cf7_Form_Finder {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Cf7_Form_Finder_Loader    Orchestrates the hooks of the plugin.
+	 * @return    cf7ff_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

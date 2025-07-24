@@ -22,7 +22,7 @@ defined('ABSPATH') || exit;
  * @author     Dental Focus <info@test.com>
  */
 
-class Cf7_Form_Finder_Loader {
+class CF7FF_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

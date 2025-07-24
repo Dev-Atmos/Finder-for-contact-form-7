@@ -113,7 +113,7 @@ jQuery(document).ready(function ($) {
 
         // Create a hidden form and submit
         let form = $('<form method="post" action="' + cf7ff_admin_params.ajaxurl + '">')
-            .append($('<input type="hidden" name="action" value="cf7_form_finder_download_csv">'))
+            .append($('<input type="hidden" name="action" value="cf7ff_download_csv">'))
             .append($('<input type="hidden" name="nonce" value="' + cf7ff_admin_params.nonce + '">'))
             .append($('<input type="hidden" name="form_ids" value="' + selected.join(',') + '">'));
 

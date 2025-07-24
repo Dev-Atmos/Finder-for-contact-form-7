@@ -21,7 +21,7 @@ defined('ABSPATH') || exit;
  * @author     Dental Focus <info@test.com>
  */
 
-class Cf7_Form_Finder_Deactivator {
+class CF7FF_Deactivator {
 
 	/**
 	 * Short Description. (use period)

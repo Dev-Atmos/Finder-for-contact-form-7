@@ -22,7 +22,7 @@ defined('ABSPATH') || exit;
  */
 
 
-class Cf7_Form_Finder_Admin
+class CF7FF_Admin
 {
 
 	/**
@@ -84,10 +84,10 @@ class Cf7_Form_Finder_Admin
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Cf7_Form_Finder_Loader as all of the hooks are defined
+		 * defined in cf7ff_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Cf7_Form_Finder_Loader will then create the relationship
+		 * The cf7ff_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -111,10 +111,10 @@ class Cf7_Form_Finder_Admin
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Cf7_Form_Finder_Loader as all of the hooks are defined
+		 * defined in cf7ff_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Cf7_Form_Finder_Loader will then create the relationship
+		 * The cf7ff_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -145,7 +145,7 @@ class Cf7_Form_Finder_Admin
 		}
 
 
-		$data = CF7_Form_Finder_Data::get_form_usage();
+		$data = CF7FF_Data::get_form_usage();
 
 		header('Content-Type: text/csv');
 		header('Content-Disposition: attachment; filename=cf7-form-usage.csv');
@@ -218,9 +218,9 @@ class Cf7_Form_Finder_Admin
 		$form_id = isset($_POST['form_id']) ? absint($_POST['form_id']) : 0;
 
 
-		$data = CF7_Form_Finder_Data::get_form_usage($builder, $form_id);
+		$data = CF7FF_Data::get_form_usage($builder, $form_id);
 
-		// $data = CF7_Form_Finder_Data::get_form_usage($builder);
+		// $data = CF7FF_Data::get_form_usage($builder);
 
 		// Return the filtered data as JSON for DataTables to update the table
 		wp_send_json_success(['data' => $data]);

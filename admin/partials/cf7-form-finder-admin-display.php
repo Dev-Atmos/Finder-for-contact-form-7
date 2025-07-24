@@ -82,7 +82,7 @@ defined('ABSPATH') || exit;
                     </thead>
                     <tbody>
                         <?php
-                        $data = CF7_Form_Finder_Data::get_form_usage();
+                        $data = CF7FF_Data::get_form_usage();
 
                         if (!empty($data)) :
                             foreach ($data as $row) :
@@ -126,7 +126,7 @@ defined('ABSPATH') || exit;
         <div class="tab-pane fade" id="hardcoded" role="tabpanel" aria-labelledby="hardcoded-tab">
             <h2>Hardcoded Contact Form 7 Shortcodes in Theme Files</h2>
             <?php
-            $hardcoded = CF7_Form_Finder_Data::scan_theme_for_hardcoded_cf7();
+            $hardcoded = CF7FF_Data::scan_theme_for_hardcoded_cf7();
             if (!empty($hardcoded)) :
             ?>
                 <table class="table table-bordered table-hover">

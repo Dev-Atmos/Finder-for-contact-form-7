@@ -25,7 +25,7 @@ defined('ABSPATH') || exit;
  * @author     Dental Focus <info@test.com>
  */
 
-class Cf7_Form_Finder_i18n {
+class CF7FF_i18n {
 
 
 	/**

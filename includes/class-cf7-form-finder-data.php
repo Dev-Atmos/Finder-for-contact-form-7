@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 /**
- * Class CF7_Form_Finder_Data
+ * class CF7FF_Data
  *
  * Provides utility methods for finding and analyzing Contact Form 7 shortcodes usage in WordPress posts and pages.
  *
@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
  * - get_cf7_hash_map(): Retrieves all published Contact Form 7 forms and builds a map of their hashes to IDs and titles using reflection.
  */
 
-class CF7_Form_Finder_Data
+class CF7FF_Data
 {
     /**
      * Placeholder for future implementation to fix CF7 shortcode IDs in post content.
